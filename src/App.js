@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import Routes from './config/routes'
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 export default class App extends Component {
   render() {
-    return (
-      <View>
-        <Text>Welcome to React Native!</Text>
-      </View>
-    );
+    return(
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    )
   }
 }
