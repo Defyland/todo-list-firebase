@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styles from './styles'
 
+import { db } from '../../config/firebase';
+
 class Home extends Component {
 
   static navigationOptions = {
@@ -15,6 +17,9 @@ class Home extends Component {
     this.state = {
 
     }
+  }
+
+  componentDidMount = () => {
   }
 
   render(){

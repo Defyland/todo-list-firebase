@@ -1,9 +1,9 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { initial } from './initial';
+import { Types as TodoTypes } from '../reducers/todo';
+import { todo } from './todo';
 
 export default function* rootSaga() {
-  yield all([
-    // takeLatest(initial)
-    initial
+  yield all([takeLatest(Types.GET_TODO_LIST),
+    todo
   ])
 }

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import initial from './initial'
 // Import redux here
+import todo from './todo'
 
 export default combineReducers({
-  initial,
+  todo,
   // Insert redux here
 })
