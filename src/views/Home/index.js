@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Button, FlatList } from 'react-native'
+import { View, Text, TouchableHighlight, FlatList} from 'react-native'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import styles from './styles'
-import { db } from '../../config/firebase';
 import { Creators as TodoActions } from '../../redux/reducers/todo';
 
 class Home extends Component {
@@ -11,29 +9,48 @@ class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
+      loading: false
     }
   }
 
   componentDidMount = () => {
     this.props.getTodoList()
-    var data = {
-      id: "8SfIovFYKHpu6hTivqNK",
-      title: Math.random() + "Allan ALlan",
-      description: "desc nasausahusahuas",
-      completed: false
-    }
-    this.props.addTodo(data)
+    // var data = {
+    //   id: "8SfIovFYKHpu6hTivqNK",
+    //   title: Math.random() + "Allan ALlan",
+    //   description: "desc nasausahusahuas",
+    //   completed: false
+    // }
+    // this.props.addTodo(data)
     // this.props.updateTodo(data)
     // this.props.removeTodo(data.id)
   }
+
+  goToEdit = (item) => {
+    // go to detail
+    this.props.navigation.navigate('EditTodo', {task: item})
+  }
+
+  renderItem = ({item}) => (
+    <TouchableHighlight 
+      style={styles.listItem} 
+      activeOpacity={0} 
+      underlayColor={'#EEE'} 
+      onPress={() => this.goToEdit(item)}
+    >
+      <Text>{item.title}</Text>
+    </TouchableHighlight>
+  )
 
   render(){
     return(
       <View style={styles.container}>
         <FlatList
+          style={styles.listContainer}
+          contentContainerStyle={styles.list}
           data={this.props.todoList}
-          renderItem={({item, index}) => <Text key={index}>{item.title}</Text>}
-          keyExtractor={(item, index) => index.toString()}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.id}
         />
       </View>
     )

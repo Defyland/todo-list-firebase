@@ -6,11 +6,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffff',
+  }, 
+  listContainer: {
+    marginTop: 30 
   },
-  image: {
-    width: '100%', 
-    height: 100 
-  }
+  list: {
+    paddingHorizontal: 20,
+  },
+  listItem: {
+    backgroundColor: '#EEE',
+    marginTop: 20,
+    padding: 30,
+  },
 })
 
 export default styles

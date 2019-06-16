@@ -1,28 +1,7 @@
 import React from "react"
-import { Button } from 'react-native'
 import * as views from "../views"
-import { DrawerToggle, Drawer } from '../components/Header'
-
-import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, createAppContainer } from "react-navigation"
-
-// static navigationOptions = {
-//   headerTitle: "Lista de Tarefas",
-//   headerLeft: (
-//     <Button
-//       onPress={() => alert('This is a button!')}
-//       title="Info"
-//       color="#fff"
-//     />
-//   ),
-//   headerStyle: {
-//     backgroundColor: '#f4511e',
-//   },
-//   headerTintColor: '#fff',
-//   headerTitleStyle: {
-//     fontWeight: 'bold',
-//   },
-// };
-
+import { DrawerToggle } from '../components/Header'
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation"
 
 const AppNavigator = createStackNavigator(
   {
@@ -36,15 +15,30 @@ const AppNavigator = createStackNavigator(
           ),
         }
       }
+    },
+    EditTodo: { 
+      screen: views.EditTodo,
+      navigationOptions: ({ navigation, screenProps }) => {
+        return {
+          headerTitle: "Edição de tarefas",
+        }
+      }
+    },
+    NewTodo: { 
+      screen: views.NewTodo,
+      navigationOptions: ({ navigation, screenProps }) => {
+        return {
+          headerTitle: "Adicionar nova tarefa",
+        }
+      }
     }
   },
   {
     initialRouteName: 'Home',
     /* The header config from HomeScreen is now here */
     defaultNavigationOptions: {
-      // headerTitle: "Lista de Tarefas",
       headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: '#049be5',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -62,11 +56,7 @@ const MyDrawerNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'Home',
-    lazy: true,
     contentComponent: views.Drawer,
-    drawerOpenRoute: 'DrawerOpen',
-    drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle',
     navigationOptions: () => ({
       headerBackTitle: null,
       headerTintColor: 'white'

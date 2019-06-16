@@ -10,56 +10,50 @@ function getTodoList() {
   var todoList = [];
   return collection.get().then((querySnapshot) => {
     querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
         todoList.push(Object.assign(doc.data(), {id: doc.id}))
     });
     return todoList;
   })
-  .catch(function(error) {
-    console.log("Error getting documents: ", error);
-    return error
+  .catch((error) => {
+    return error;
   });
 }
 
 function addTodo(params) {
   return collection.add(params).then((docRef) => {
-      return docRef;
+    return docRef;
   })
-  .catch(function(error) {
-    console.error("Error adding document: ", error);
+  .catch((error) => {
     return error;
   })
 }
 
 function updateTodo(doc) {
   return collection.doc(doc.id).update(doc).then((docRef) => {
-      return docRef;
+    return docRef;
   })
-  .catch(function(error) {
-    console.error("Error adding document: ", error);
+  .catch((error) => {
     return error;
   })
 }
 
 function removeTodo(doc_id) {
-  return collection.doc(doc_id).delete().then(function() {
-    console.log("Document successfully deleted!");
+  return collection.doc(doc_id).delete().then(() => {
     return true;
-  }).catch(function(error) {
-    console.error("Error removing document: ", error);
-      return error;
+  }).catch((error) => {
+    return error;
   });
 }
 
-function timeStamp() {
-  var docRef = db.collection('objects').doc('some-id');
+// Save task with timeStamp
+// function timeStamp() {
+//   var docRef = db.collection('objects').doc('some-id');
 
-  // Update the timestamp field with the value from the server
-  var updateTimestamp = docRef.update({
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  });
-}
+//   // Update the timestamp field with the value from the server
+//   var updateTimestamp = docRef.update({
+//     timestamp: firebase.firestore.FieldValue.serverTimestamp()
+//   });
+// }
 
 export function* list(action) {
   try {

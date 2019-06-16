@@ -6,7 +6,7 @@ class Drawer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> textInComponent </Text>
+        <Text> SideMenu </Text>
       </View>
     )
   }
