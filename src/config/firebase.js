@@ -14,4 +14,3 @@ let config = {
 };
 let app = firebase.initializeApp(config);
 export const db = app.firestore();
-// export const db = app.database();

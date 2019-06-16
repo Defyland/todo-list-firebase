@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Button } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styles from './styles'
-
 import { db } from '../../config/firebase';
+import { Creators as TodoActions } from '../../redux/reducers/todo';
 
 class Home extends Component {
-
-  static navigationOptions = {
-    header: null
-  }
 
   constructor(props){
     super(props)
@@ -20,6 +16,7 @@ class Home extends Component {
   }
 
   componentDidMount = () => {
+    this.props.getTodoList()
   }
 
   render(){
@@ -39,10 +36,10 @@ Home.propTypes = {
 
 }
 
-const mapStateToProps = state => {
-  return {
-    initial:[]
+const mapStateToProps = state => (
+  {
+    data: []
   }
-}
+)
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, TodoActions)(Home)

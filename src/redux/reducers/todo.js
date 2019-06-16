@@ -1,14 +1,13 @@
 export const Types = {
-  GET_TODO_LIST: 'todo/GET_TODO_LIST',
-  ADD_TODO: 'todo/ADD_TODO',
-  UPDATE_TODO: 'todo/UPDATE_TODO',
-  REMOVE_TODO: 'todo/REMOVE_TODO',
-  SUCCESS_TODO_LIST: 'todo/SUCCESS_TODO_LIST',
-  FAILURE_TODO_LIST: 'todo/FAILURE_TODO_LIST',
+  GET_TODO_LIST: "todo/GET_TODO_LIST",
+  ADD_TODO: "todo/ADD_TODO",
+  UPDATE_TODO: "todo/UPDATE_TODO",
+  REMOVE_TODO: "todo/REMOVE_TODO",
+  SUCCESS_TODO_LIST: "todo/SUCCESS_TODO_LIST",
+  FAILURE_TODO_LIST: "todo/FAILURE_TODO_LIST",
 }
 
 export const Creators = {
-  
   getTodoList: data => ({
     type: Types.GET_TODO_LIST,
     payload: { data },
@@ -58,5 +57,6 @@ export default function todo(state = INITIAL_STATE, action) {
       return { data: [], loading: false, error: true };
     default:
       return state;
+      break;
   }
 }
